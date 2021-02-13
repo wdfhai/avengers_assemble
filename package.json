@@ -9,16 +9,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wdfhai/hot_restaurant.git"
+    "url": "git+https://github.com/Desparta05/hot_restaurant.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/wdfhai/hot_restaurant/issues"
+    "url": "https://github.com/Desparta05/hot_restaurant/issues"
   },
-  "homepage": "https://github.com/wdfhai/hot_restaurant#readme",
+  "homepage": "https://github.com/Desparta05/hot_restaurant#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7"
   }
 }
