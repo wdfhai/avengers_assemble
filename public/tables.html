@@ -13,9 +13,10 @@
                 <p class="lead" id="subtitle">Current Reservations and Waiting List</p>
                 <hr class="my-4">
                 <p class="lead">
-                    <a class="btn btn-danger btn-lg" href="#" role="button" id="btnMakeReservations">Make
+                    <a class="btn btn-danger btn-lg" href="./reservations.html" role="button"
+                        id="btnMakeReservations">Make
                         Reservations</a>
-                    <a class="btn btn-secondary btn-lg" href="#" role="button" id="btnHome">Home</a>
+                    <a class="btn btn-secondary btn-lg" href="./index.html" role="button" id="btnHome">Home</a>
                 </p>
             </div>
         </div>
@@ -24,7 +25,7 @@
                 <div class="card-header">
                     <h3>Current Reservations</h3>
                 </div>
-                <div class="card-body">
+                <div class="card-body" id="currentReservations">
 
                 </div>
             </div>
@@ -35,7 +36,7 @@
                 <div class="card-header">
                     <h3>Waiting List</h3>
                 </div>
-                <div class="card-body">
+                <div class="card-body" id="waitingList">
 
                 </div>
             </div>
@@ -43,8 +44,8 @@
     </section>
     <footer class="container">
         <a href="#" id="btnClearTables">Clear Tables</a>|
-        <a href="#" id="btnTableLink">API Table Link</a>|
-        <a href="#" id="btnWaitList">API Wait List</a>
+        <a href="./api/tables" id="btnTableLink">API Table Link</a>|
+        <a href="./api/wait" id="btnWaitList">API Wait List</a>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
