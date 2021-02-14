@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>team Page</title>
+
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+</head>
+
+<body>
+  <div class="container">
+    <div class="jumbotron">
+      <h1 class="text-center"><span class="fas fa-mask"> </span><span class="fab fa-superpowers"></span> Avengers
+        Assemble <span class="fab fa-superpowers"></span> <span class="fas fa-mask"></span></h1>
+      <hr />
+      <h2 class="text-center">Current Team and Applicant List</h2>
+      <br />
+
+      <div class="text-center">
+        <a href="/applications">
+          <button class="btn btn-lg btn-danger">
+            <span class="fa fa-credit-card"></span> Apply Now
+          </button>
+        </a>
+        <a href="/">
+          <button class="btn btn-lg btn-default">
+            <span class="fa fa-home"></span>
+          </button>
+        </a>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <!-- Current team in Use -->
+        <div class="card">
+          <div class="card-header">
+            <h4>Current Team</h4>
+          </div>
+          <div class="card-body">
+            <ul id="teamList" class="list-group"></ul>
+          </div>
+        </div>
+
+        <!-- Applicanting List Card -->
+        <div class="card mt-4">
+          <div class="card-header">
+            <h4>WApplicant List</h4>
+          </div>
+          <div class="card-body">
+            <ul id="ApplicantList" class="list-group"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer mt-4">
+      <div class="container">
+        <p>Control Panel</p>
+        <p>
+          <a href="#" id="clear">Clear team</a> |
+          <a href="/api/team">API Team Link</a> |
+          <a href="/api/apps">API Applicant List</a>
+        </p>
+      </div>
+    </footer>
+  </div>
+</body>
+
+
+<script type="text/javascript">
+
+  const runTeamQuery = () => {
+    fetch('/api/team', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((teamData) => {
+        console.log('teamData', teamData);
+        console.log('------------------------------------');
+
+        for (let i = 0; i < teamData.length; i++) {
+
+          const teamList = document.getElementById('teamList');
+          let listItem = document.createElement('li');
+          listItem.classList.add('list-group-item', 'mt-4');
+          const teamEl = document.createElement('h2');
+          teamEl.textContent = `team #${i + 1}`;
+
+          const hrBreak = document.createElement('hr');
+
+          const idEl = document.createElement('h2');
+          idEl.textContent = `ID: ${teamData[i].customerID}`;
+
+          const nameEl = document.createElement('h2');
+          nameEl.textContent = `Name: ${teamData[i].customerName}`;
+
+          const emailEl = document.createElement('h2');
+          emailEl.textContent = `Email: ${teamData[i].customerEmail}`;
+
+          const phoneEl = document.createElement('h2');
+          phoneEl.textContent = `Phone: ${teamData[i].phoneNumber}`;
+
+          listItem.appendChild(teamEl);
+          listItem.appendChild(hrBreak);
+          listItem.appendChild(idEl);
+          listItem.appendChild(nameEl);
+          listItem.appendChild(emailEl);
+          listItem.appendChild(phoneEl);
+
+          teamList.appendChild(listItem);
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+
+  const runApplicantListQuery = () => {
+    fetch('/api/Applicantlist', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((ApplicantData) => {
+        console.log('runApplicantListQuery -> ApplicantData', ApplicantData);
+        console.log('------------------------------------');
+
+        // Loop through and display each of the customers
+        for (let i = 0; i < ApplicantData.length; i++) {
+          // Get a reference to the ApplicantList element and populate it with team
+          const ApplicantList = document.getElementById('ApplicantList');
+          console.log('runApplicantListQuery -> ApplicantList', ApplicantList);
+
+          // Then display the fields in the HTML (Section Name, Date, URL)
+          let listItem = document.createElement('li');
+          listItem.classList.add('list-group-item', 'mt-4');
+
+          // Add elements that will display customer ID, name, email and phone number
+          const teamEl = document.createElement('h2');
+          teamEl.textContent = 'team #' + (i + 1);
+          console.log('runApplicantListQuery -> teamEl', teamEl);
+
+          const hrBreak = document.createElement('hr');
+
+          const idEl = document.createElement('h2');
+          idEl.textContent = `ID: ${ApplicantData[i].customerID}`;
+          console.log('runApplicantListQuery -> idEl', idEl);
+
+          const nameEl = document.createElement('h2');
+          nameEl.textContent = `Name: ${ApplicantData[i].customerName}`;
+          console.log('runApplicantListQuery -> nameEl', nameEl);
+
+          const emailEl = document.createElement('h2');
+          emailEl.textContent = `Email: ${ApplicantData[i].customerEmail}`;
+          console.log('runApplicantListQuery -> emailEl', emailEl);
+
+          const phoneEl = document.createElement('h2');
+          phoneEl.textContent = `Phone: ${ApplicantData[i].phoneNumber}`;
+          console.log('runApplicantListQuery -> phoneEl', phoneEl);
+
+          // Append all elements to the listItem
+          listItem.appendChild(teamEl);
+          listItem.appendChild(hrBreak);
+          listItem.appendChild(idEl);
+          listItem.appendChild(nameEl);
+          listItem.appendChild(emailEl);
+          listItem.appendChild(phoneEl);
+
+          ApplicantList.appendChild(listItem);
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+
+  // This function resets all of the data in our team. This is intended to let you restart a demo.
+  const clearteam = () => {
+    alert('Clearing...');
+
+    fetch('/api/clear', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        let ApplicantList = document.getElementById('ApplicantList');
+        ApplicantList.innerHTML = '';
+
+        let teamList = document.getElementById('teamList');
+        teamList.innerHTML = '';
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+
+  let clear = document.getElementById('clear');
+  clear.addEventListener('click', clearteam)
+
+  // Run Queries!
+  // ==========================================
+  runTeamQuery();
+  runApplicantListQuery();
+</script>
+
+</html>

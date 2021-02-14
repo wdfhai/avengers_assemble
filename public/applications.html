@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Reservation Page</title>
+
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+</head>
+
+<body>
+  <div class="container">
+    <div class="jumbotron">
+      <h1 class="text-center"><span class="fas fa-mask"> </span><span class="fab fa-superpowers"></span> Avengers
+        Assemble <span class="fab fa-superpowers"></span> <span class="fas fa-mask"></span></h1>
+      <hr />
+      <h2 class="text-center">Apply to join now!</h2>
+      <br />
+      <div class="text-center">
+        <a href="/team">
+          <button class="btn btn-lg btn-primary">
+            <span class="fa fa-list-alt"></span> View Team
+          </button>
+        </a>
+        <a href="/">
+          <button class="btn btn-lg btn-default">
+            <span class="fa fa-home"></span>
+          </button>
+        </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-header">
+            Team
+          </div>
+          <div class="card-body">
+            <form role="form">
+              <div class="form-group">
+                <label for="applicant-real-name">Real Name</label>
+                <input type="text" class="form-control" id="applicant-real-name" />
+              </div>
+              <div class="form-group">
+                <label for="applicant-superhero-name">Superhero Alias</label>
+                <input type="text" class="form-control" id="applicant-superhero-name" />
+              </div>
+              <div class="form-group">
+                <label for="applicant-home-country">Country</label>
+                <input type="text" class="form-control" id="applicant-home-country" />
+              </div>
+              <div class="form-group">
+                <label for="applicant-superpowers">Superpowers</label>
+                <input type="text" class="form-control" id="applicant-superpowers" />
+              </div>
+              <div class="form-group">
+                <label for="applicant-health">Health Points (1-1000)</label>
+                <input type="number" class="form-control" min="1" max="1000" id="applicant-health" />
+              </div>
+              <div class="form-group">
+                <label for="applicant-strength">Strength (1-100)</label>
+                <input type="text" class="form-control" min="1" max="100" id="applicant-strength" />
+              </div>
+              <div class="form-group">
+                <label for="applicant-speed">Speed (1-100)</label>
+                <input type="text" class="form-control" min="1" max="100" id="applicant-speed" />
+              </div>
+              <div class="form-group">
+                <label for="applicant-stamina">Stamina (1-100)</label>
+                <input type="text" class="form-control" min="1" max="100" id="applicant-stamina" />
+              </div>
+              <div class="form-group">
+                <label for="applicant-healing">Healing Ability (1-10)</label>
+                <input type="number" class="form-control" min="1" max="0" id="applicant-healing" />
+              </div>
+              <button type="submit" class="btn btn-primary submit">
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <p>
+          <a href="/api/team">API Team Link</a> |
+          <a href="/api/apps">API Applicant List</a>
+        </p>
+      </div>
+    </footer>
+  </div>
+</body>
+
+</html>
+
+
+<script type="text/javascript">
+
+  const submitBtn = document.querySelector('.submit');
+  submitBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    let newHero = {
+      name: document.getElementById('applicant-real-name').value.trim(),
+      alias: document.getElementById('applicant-superhero-name').value.trim(),
+      country: document.getElementById('applicant-home-country').value.trim(),
+      superpowers: document.getElementById('applicant-superpowers').value.trim(),
+      health: document.getElementById('applicant-health').value.trim(),
+      strength: document.getElementById('applicant-strength').value.trim(),
+      speed: document.getElementById('applicant-speed').value.trim(),
+      stamina: document.getElementById('applicant-stamina').value.trim(),
+      healing_ability: document.getElementById('applicant-healing').value.trim(),
+    };
+
+    console.log('submitBtn.onclick -> newHero', newHero);
+    fetch('/api/team', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newHero),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data) {
+
+          alert('Approved by SHIELD! You are officially part of the Avengers!!');
+        } else {
+
+          alert('Your application is being assesed. SHIELD will be in touch!');
+
+          document.getElementById('applicant-real-name').value = '';
+          document.getElementById('applicant-superhero-name').value = '';
+          document.getElementById('applicant-home-country').value = '';
+          document.getElementById('applicant-superpowers').value = '';
+          document.getElementById('applicant-health').value = '';
+          document.getElementById('applicant-strength').value = '';
+          document.getElementById('applicant-speed').value = '';
+          document.getElementById('applicant-stamina').value = '';
+          document.getElementById('applicant-healing').value = '';
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  });
+</script>
