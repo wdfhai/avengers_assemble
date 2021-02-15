@@ -1,4 +1,3 @@
-
 [![License: WTFPL](https://img.shields.io/badge/License-WTFPL-brightgreen.svg)](http://www.wtfpl.net/about/)
 
 <div align="center">
@@ -8,11 +7,11 @@
     Join us in the fight against Galactus
     <br />
     <br />
-    <a href="*">View Demo</a>
+    <a href="https://avengers-assemble-by-wdfhai.herokuapp.com/">View Demo</a>
     </p>
 </div>
 
-<img src="./images/preview.png" alt="project preview img" style="height: 250px; width: 300px;">
+<img src="./assets/preview.png" alt="project preview img" style="height: 250px; width: 300px;">
 
 <details open="open">
     <summary>Table of Contents</summary>
@@ -65,10 +64,10 @@ This project is using the following license: WTFPL
 
 You can reach me for any questions or comments at the following:
 
-- Look me up on Github,  where my username is <span><a href="https://github.com/wdfhai">wdfhai</a></span>.
+- Look me up on Github, where my username is <span><a href="https://github.com/wdfhai">wdfhai</a></span>.
 - Reach out to me through email at wd.fhai@outlook.com.
 - Find me on Twitter at @wdfhai.
 
 ### Summary
 
-Just an experimental project, not meant to be deployed permanently. 
+Just an experimental project, not meant to be deployed permanently.
