@@ -119,6 +119,7 @@
       speed: document.getElementById('applicant-speed').value.trim(),
       stamina: document.getElementById('applicant-stamina').value.trim(),
       healing_ability: document.getElementById('applicant-healing').value.trim(),
+      combat_class: Math.floor(parseInt(health) + (parseInt(strength) * 0.8) + (parseInt(speed) * 0.7) + (parseInt(stamina) * 0.5) + (parseInt(healing_ability) * 0.5))
     };
 
     console.log('submitBtn.onclick -> newHero', newHero);
@@ -133,10 +134,10 @@
       .then((data) => {
         if (data) {
 
-          alert('Approved by SHIELD! You are officially part of the Avengers!!');
+          alert('Approved by SHIELD! You are officially part of the Avengers!! You have a Combat Class of ' + combat_class);
         } else {
 
-          alert('Your application is being assesed. SHIELD will be in touch!');
+          alert('Your application is being assesed. SHIELD will be in touch! You have a Combat Class of ' + combat_class);
 
           document.getElementById('applicant-real-name').value = '';
           document.getElementById('applicant-superhero-name').value = '';
